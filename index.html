@@ -20,6 +20,10 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
 
+
+
+
+
 var geojson = [
   {
     "type": "Feature",
@@ -44,7 +48,7 @@ var geojson = [
     "properties": {
       "title": "Safdarjung Airport",
       "description": "Headquaters of the Airports Authority of India",
-      "marker-color": "#fc4353",
+      "marker-color": "#fc2379",
       "marker-size": "large",
       "marker-symbol": "airport"
     }
@@ -88,7 +92,8 @@ var geojson = [
       "description": "Tourism= Museum",
       "marker-color": "#fc4353",
       "marker-size": "large",
-      "marker-symbol": "museum"
+      "marker-symbol": "museum",
+      url: "https://en.wikipedia.org/wiki/Parliament_Museum"
     }
   },
   {
@@ -156,7 +161,7 @@ var geojson = [
     "properties": {
       "title": "Taj Mahal Hotel",
       "description": "tourism=hotel",
-      "marker-color": "#fc4353",
+      "marker-color": "#7ec9b1",
       "marker-size": "large",
       "marker-symbol": "restaurant"
     }
@@ -170,7 +175,7 @@ var geojson = [
     "properties": {
       "title": "Claridges Hotel",
       "description": "tourism=hotel",
-      "marker-color": "#fc4353",
+      "marker-color": "#7ec9b1",
       "marker-size": "large",
       "marker-symbol": "restaurant"
     }
@@ -184,7 +189,7 @@ var geojson = [
     "properties": {
       "title": "The Ambassador",
       "description": "tourism=hotel",
-      "marker-color": "#fc4353",
+      "marker-color": "#7ec9b1",
       "marker-size": "large",
       "marker-symbol": "shop"
     }
@@ -198,7 +203,7 @@ var geojson = [
     "properties": {
       "title": "Le Méridien",
       "description": "tourism=hotel",
-      "marker-color": "#fc4353",
+      "marker-color": "#7ec9b1",
       "marker-size": "large",
       "marker-symbol": "restaurant"
     }
@@ -210,7 +215,19 @@ var map = L.mapbox.map('map', 'jothirnadh.91c6ef22')
     .addControl(L.mapbox.geocoderControl('mapbox.places'))
     .featureLayer.setGeoJSON(geojson);
 
+var myLayer = L.mapbox.featureLayer().addTo(map);
+
+
+
 var hash = L.hash(map);
+
+myLayer.setGeoJSON(geojson);
+myLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+myLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
 
 </script>
 
