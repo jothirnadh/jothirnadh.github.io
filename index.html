@@ -13,7 +13,6 @@
 </head>
 <body>
 
-
 <style>
 #inputs,
 #errors,
@@ -64,7 +63,6 @@
   color:#808080;
   }
 </style>
-
 
 <!-- Set the display of this container to none so we can
      add it programmatically to `legendControl` -->
@@ -286,8 +284,6 @@ var geojson = [
   }
 ];
 
-
-
 var map = L.mapbox.map('map', null, {
     zoomControl: false
 })
@@ -340,9 +336,20 @@ var directionsRoutesControl = L.mapbox.directions.routesControl('routes', direct
 var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
     .addTo(map);
 
+var nprGrid = L.mapbox.gridLayer('jothirnadh.91c6ef22').addTo(map);
+
+// you would usually use the gridControl to display a nice box in the corner
+// with your data, since we want a popup instead we won't initialize the gridControl
+
+nprGrid.on('mouseover', function(e) {
+    if (!e.data) return;
+    var popup = L.popup()
+        .setLatLng(e.latLng)
+        .setContent(e.data.building)
+        .openOn(map);
+});
 
 </script>
-
 
 </body>
 </html>
