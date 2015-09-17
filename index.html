@@ -13,16 +13,58 @@
 </head>
 <body>
 
+
+<style>
+#inputs,
+#errors,
+#directions {
+    position: absolute;
+    width: 33.3333%;
+    max-width: 300px;
+    min-width: 200px;
+}
+
+#inputs {
+    z-index: 10;
+    top: 10px;
+    left: 10px;
+}
+
+#directions {
+    z-index: 99;
+    background: rgba(0,0,0,.8);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+#errors {
+    z-index: 8;
+    opacity: 0;
+    padding: 10px;
+    border-radius: 0 0 3px 3px;
+    background: rgba(0,0,0,.25);
+    top: 90px;
+    left: 10px;
+}
+
+</style>
+
+<script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
 
 <div id='map'></div>
+<div id='inputs'></div>
+<div id='errors'></div>
+<div id='directions'>
+  <div id='routes'></div>
+  <div id='instructions'></div>
+</div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
-
-
-
-
 
 var geojson = [
   {
@@ -210,16 +252,18 @@ var geojson = [
   }
 ];
 
-var map = L.mapbox.map('map', 'jothirnadh.91c6ef22')
+
+
+var map = L.mapbox.map('map', 'jothirnadh.91c6ef22', {
+    zoomControl: false
+})
     .setView([28.6246,77.2179], 14)
-    .addControl(L.mapbox.geocoderControl('mapbox.places'))
-    .featureLayer.setGeoJSON(geojson);
+    .addControl(L.mapbox.geocoderControl('mapbox.places'));
 
 var myLayer = L.mapbox.featureLayer().addTo(map);
 
-
-
 var hash = L.hash(map);
+
 
 myLayer.setGeoJSON(geojson);
 myLayer.on('mouseover', function(e) {
@@ -228,6 +272,29 @@ myLayer.on('mouseover', function(e) {
 myLayer.on('mouseout', function(e) {
     e.layer.closePopup();
 });
+
+// move the attribution control out of the way
+// map.attributionControl.setPosition('bottomleft');
+
+// create the initial directions object, from which the layer
+// and inputs will pull data.
+var directions = L.mapbox.directions();
+
+var directionsLayer = L.mapbox.directions.layer(directions)
+    .addTo(map);
+
+var directionsInputControl = L.mapbox.directions.inputControl('inputs', directions)
+    .addTo(map);
+
+var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions)
+    .addTo(map);
+
+var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions)
+    .addTo(map);
+
+var directionsInstructionsControl = L.mapbox.directions.instructionsControl('instructions', directions)
+    .addTo(map);
+
 
 </script>
 
