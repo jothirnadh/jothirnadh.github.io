@@ -20,8 +20,194 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
 
+var geojson = [
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2045669,28.6141698]
+    },
+    "properties": {
+      "title": "Raisina Hill",
+      "description": "Place: locality",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "monument"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.20709,28.58338]
+    },
+    "properties": {
+      "title": "Safdarjung Airport",
+      "description": "Headquaters of the Airports Authority of India",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "airport"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.21063,28.58920]
+    },
+    "properties": {
+      "title": "Safdarjung Tomb",
+      "description": "Tourist place",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "monument"
+    }
+  },
+   {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.23111,28.61270]
+    },
+    "properties": {
+      "title": "India Gate",
+      "description": "Constructed in the memory of Soldiers",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "monument"
+    }
+  },
+   {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2077915,28.6189234]
+    },
+    "properties": {
+      "title": "Parliament Museum",
+      "description": "Tourism= Museum",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "museum"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2421721,28.6132826]
+    },
+    "properties": {
+      "title": "Crafts Museum",
+      "description": "Tourism= Museum",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "museum"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2445016,28.6129633]
+    },
+    "properties": {
+      "title": "Science Museum",
+      "description": "Tourism= Museum",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "museum"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.1982266,28.6037468]
+    },
+    "properties": {
+      "title": "Nehru Planetarium",
+      "description": "Part of the Teen Murti Bhavan",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "museum"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.198872,28.6026982]
+    },
+    "properties": {
+      "title": "Teen Murti Bhavan",
+      "description": "The largest number of buildings in New Delhi were designed by Robert Tor Russel (1888-1977) including Flagstaff House the Commander-in-Chief’s residence which was to be occupied by the first Indian Prime Minister Jawaharlal Nehru",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "museum"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2235361,28.6048146]
+    },
+    "properties": {
+      "title": "Taj Mahal Hotel",
+      "description": "tourism=hotel",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "restaurant"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2165438,28.6006254]
+    },
+    "properties": {
+      "title": "Claridges Hotel",
+      "description": "tourism=hotel",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "restaurant"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.228846,28.6017391]
+    },
+    "properties": {
+      "title": "The Ambassador",
+      "description": "tourism=hotel",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "restaurant"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [77.2183837,28.6186865]
+    },
+    "properties": {
+      "title": "Le Méridien",
+      "description": "tourism=hotel",
+      "marker-color": "#fc4353",
+      "marker-size": "large",
+      "marker-symbol": "restaurant"
+    }
+  }
+];
+
 var map = L.mapbox.map('map', 'jothirnadh.91c6ef22')
     .setView([28.6246,77.2179], 14)
+    .featureLayer.setGeoJSON(geojson)
     .addControl(L.mapbox.geocoderControl('mapbox.places'));
 
 var hash = L.hash(map);
