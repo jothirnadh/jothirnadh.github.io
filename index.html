@@ -207,8 +207,8 @@ var geojson = [
 
 var map = L.mapbox.map('map', 'jothirnadh.91c6ef22')
     .setView([28.6246,77.2179], 14)
-    .featureLayer.setGeoJSON(geojson)
-    .addControl(L.mapbox.geocoderControl('mapbox.places'));
+    .addControl(L.mapbox.geocoderControl('mapbox.places'))
+    .featureLayer.setGeoJSON(geojson);
 
 var hash = L.hash(map);
 
