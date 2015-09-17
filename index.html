@@ -51,17 +51,52 @@
 
 </style>
 
+
+<style>
+.legend label,
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  }
+</style>
+
+
+<!-- Set the display of this container to none so we can
+     add it programmatically to `legendControl` -->
+<div id='legend' style='display:none;'>
+  <strong>The Title or Explanation of your Map</strong>
+  <nav class='legend clearfix'>
+    <span style='background:#F1EEF6;'></span>
+    <span style='background:#BDC9E1;'></span>
+    <span style='background:#74A9CF;'></span>
+    <span style='background:#2B8CBE;'></span>
+    <span style='background:#045A8D;'></span>
+    <label>0 - 20%</label>
+    <label>40%</label>
+    <label>60%</label>
+    <label>80%</label>
+    <label>100%</label>
+    <small>Source: <a href="#link to source">Name of source</a></small>
+</div>
+
+
 <script src='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
 
-<div id='map'></div>
+<div id='map' class='dark'></div>
 <div id='inputs'></div>
 <div id='errors'></div>
 <div id='directions'>
   <div id='routes'></div>
   <div id='instructions'></div>
 </div>
+
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
@@ -259,6 +294,7 @@ var map = L.mapbox.map('map', 'jothirnadh.91c6ef22', {
 })
     .setView([28.6246,77.2179], 14)
     .addControl(L.mapbox.geocoderControl('mapbox.places'));
+map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
 var myLayer = L.mapbox.featureLayer().addTo(map);
 
@@ -274,7 +310,7 @@ myLayer.on('mouseout', function(e) {
 });
 
 // move the attribution control out of the way
-// map.attributionControl.setPosition('bottomleft');
+map.attributionControl.setPosition('bottomleft');
 
 // create the initial directions object, from which the layer
 // and inputs will pull data.
