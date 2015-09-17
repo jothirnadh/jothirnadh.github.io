@@ -19,51 +19,9 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
 
-
-
-
-
-var geojson = [
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [28.6141698, 77.2045669]
-    },
-    "properties": {
-      "title": "Raisina Hill",
-      "description": "locality",
-      "marker-color": "#fc4353",
-      "marker-size": "large",
-      "marker-symbol": "harbor"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-122.414, 37.776]
-    },
-    "properties": {
-      "title": "Mapbox SF",
-      "description": "155 9th St, San Francisco",
-      "marker-color": "#fc4353",
-      "marker-size": "large",
-      "marker-symbol": "harbor"
-    }
-  }
-];
-
-
-
-
-
-
-
 var map = L.mapbox.map('map', 'jothirnadh.91c6ef22')
     .setView([28.6246,77.2179], 14)
-    .addControl(L.mapbox.geocoderControl('mapbox.places'))
-    .featureLayer.setGeoJSON(geojson);;
+    .addControl(L.mapbox.geocoderControl('mapbox.places'));
 
 var hash = L.hash(map);
 
