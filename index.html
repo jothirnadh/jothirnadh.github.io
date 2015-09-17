@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>A simple map with geocoding facility</title>
+<title>Jothi's MAP</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
@@ -89,14 +89,13 @@
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.3.0/mapbox.directions.css' type='text/css' />
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
 
-<div id='map' class='dark'></div>
+<div id='map'></div>
 <div id='inputs'></div>
 <div id='errors'></div>
 <div id='directions'>
   <div id='routes'></div>
   <div id='instructions'></div>
 </div>
-
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam90aGlybmFkaCIsImEiOiI0MTIzNmYwZmIzNWQ3MjFlNWE2YmE4YzU1YWQyNDdhOCJ9.afll1jVPlwiIoz0bJx51_g';
@@ -289,7 +288,7 @@ var geojson = [
 
 
 
-var map = L.mapbox.map('map', 'jothirnadh.91c6ef22', {
+var map = L.mapbox.map('map', null, {
     zoomControl: false
 })
     .setView([28.6246,77.2179], 14)
@@ -299,6 +298,16 @@ map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 var myLayer = L.mapbox.featureLayer().addTo(map);
 
 var hash = L.hash(map);
+
+var layers = {
+      Streets: L.mapbox.tileLayer('mapbox.streets'),
+      Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
+      Satellite: L.mapbox.tileLayer('mapbox.satellite'),
+      Jothi: L.mapbox.tileLayer('jothirnadh.91c6ef22')
+  };
+
+  layers.Streets.addTo(map);
+  L.control.layers(layers).addTo(map);
 
 
 myLayer.setGeoJSON(geojson);
